@@ -1,0 +1,217 @@
+<style>
+.flex {
+  display:flex;
+
+}
+.flex2 {
+  flex-basis:48%;
+}
+.flex3 {
+  flex-basis:32%;
+}
+.grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 56px;
+  margin:1.2%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  background: #f0f1f2;
+  border: 1px solid #f1f2f3;
+}
+#INPUT_BOX{
+    width:50%;
+}
+#calc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  background: #1a1b1c;
+  color:#ffffff;
+  border-radius:4px;
+  font-size:16px;
+  height:36px;
+  line-height:36px;
+  margin:10px 4px;
+  margin-bottom:24px;
+  transition:0.12s;
+  width:50%;
+}
+
+#calc:active {
+  transform:scale(0.98);
+}
+
+.grid .value {
+  font-size: 20px;
+  color: #64696e;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+
+.grid .value input{
+  width:96%;
+}
+
+.grid .key {
+  font-size: 10px;
+  color: #8c9196;
+  line-height: 10px;
+}
+
+p.tip {
+  font-size:14px;
+  color:#888888;
+  text-align:center;
+}
+.result{
+  background:#f8f9fa;
+  padding:10px;
+  width:50%;
+}
+
+
+
+</style>
+
+<h1>Collection Event Calculator</h1>
+<div class="flex" id="INPUT_BOX">
+    <div class="flex">
+        <div class="grid">
+            <div class="value"><input type="number" name="coin" id="coin"></div>
+            <div class="key">Apex Coins</div>
+        </div>
+        <div class="grid">
+            <div class="value"><input type="number" name="metal" id="metal"></div>
+            <div class="key">Crafting Metals</div>
+        </div>
+    </div>
+</div>
+<div id="calc">Calculate</div>
+<div class="result">
+    <p class="tip">Result Box</p>
+    <div class="flex">
+        <div class="grid flex3">
+            <div class="value" id="buyskin">-</div>
+            <div class="key">Buy Skin</div>
+        </div>
+        <div class="grid flex3">
+            <div class="value" id="buykb">-</div>
+            <div class="key">Need Bundle</div>
+        </div>
+        <div class="grid flex3">
+            <div class="value" id="needbox">-</div>
+            <div class="key">Event Pack</div>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="grid flex2">
+            <div class="value" id="costmetal">-</div>
+            <div class="key">Metal cost</div>
+        </div>
+        <div class="grid flex2">
+            <div class="value" id="needcoin">-</div>
+            <div class="key">Still Need Coin</div>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="grid flex2">
+            <div class="value" id="leftmetal">-</div>
+            <div class="key">Metal Remaining</div>
+        </div>
+        <div class="grid flex2">
+            <div class="value" id="leftcoin">-</div>
+            <div class="key">Coin Remaining</div>
+        </div>
+    </div>
+</div>
+<script>
+    var submit = document.querySelector("#calc");
+    var buyskindom = document.querySelector("#buyskin");
+    var buykbdom = document.querySelector("#buykb");
+    var needboxdom = document.querySelector("#needbox");
+    var needcoindom = document.querySelector("#needcoin");
+    var costmetaldom = document.querySelector("#costmetal");
+    var leftmetaldom = document.querySelector("#leftmetal");
+    var leftcoindom = document.querySelector("#leftcoin");
+    var buygold = 0,
+    buypurple = 0,
+    buykb = 0,
+    costmetal = 0,
+    needcoin = 0,
+    leftmetal=0;
+    submit.addEventListener('click',
+    function calc() {
+      var coin = document.querySelector("#coin").value;
+      var metal = document.querySelector("#metal").value;
+      if (metal>=38400) {
+        buygold = buypurple = 12;
+        costmetal = 38400;
+      } else if (metal>=9600) {
+        buygold = Math.floor((metal-9600)/2400);
+        buypurple = 12;
+        costmetal = 9600+buygold*2400;
+      } else if (metal>=0){
+        buygold = 0;
+        buypurple = Math.floor(metal/800);
+        costmetal = buypurple*800;
+      } else {
+        console.log("Error Metal");
+        alert("Metal cannot be"+metal+"！")
+        return;
+      };
+      var leftbox = 24-buygold-buypurple,
+          needbox = leftbox;
+      if (leftbox>=12) {
+        needcoin = (leftbox-12)*700+7500-coin;
+        buykb = "10 + 5";
+        needbox = leftbox-12
+      } else if (leftbox<=0) {
+        needcoin = 0;
+        buykb = "NULL";
+      } else if (leftbox<4) {
+        needcoin = leftbox*700-coin;
+        buykb = "NULL";
+      } else if (leftbox<8) {
+        needcoin = (leftbox-4)*700+2500-coin;
+        buykb = "5";
+        needbox = leftbox-4
+      } else if (leftbox<12) {
+        needcoin = (leftbox-8)*700+5000-coin;
+        buykb = "10";
+        needbox = leftbox-8
+      };
+      console.log("Need Coin："+needcoin);
+      if(needcoin<0){
+        needcoindom.innerHTML = 0;
+        leftcoindom.innerHTML = -needcoin;
+      }else{
+        needcoindom.innerHTML = needcoin;
+        leftcoindom.innerHTML = 0;
+      }
+      needboxdom.innerHTML = needbox;
+      buyskindom.innerHTML = "<span style='color:#FF8C00'>"+ buygold + "</span> + <span style='color:#8A2BE2'>"+ buypurple + "</span>"
+      buykbdom.innerHTML = buykb;
+      costmetaldom.innerHTML = costmetal;
+      leftmetal=metal-costmetal;
+      leftmetaldom.innerHTML = leftmetal;
+
+
+
+    },false)
+</script>
