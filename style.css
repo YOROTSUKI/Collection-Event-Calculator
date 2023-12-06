@@ -5,6 +5,8 @@
   --color-bg: #313338;
   --color-bg-box1: #2b2d31;
   --color-bg-box2: #26272b;
+  --color-border: #26272b;
+  --color-header: #ffffff;
 }
 [data-theme="light"] {
   --color-fg: #000000;
@@ -12,6 +14,8 @@
   --color-bg: #ffffff;
   --color-bg-box1: #f8f9fa;
   --color-bg-box2: #f0f1f2;
+  --color-border: #000000;
+  --color-header: #000000;
 }
 body {
   transition: 0.2s;
@@ -33,6 +37,29 @@ body {
 }
 h1 {
   text-align: center;
+  white-space: nowrap;
+}
+h1 span {
+  padding-right: 10px;
+  margin-left: -20px;
+}
+h1 span:empty:before {
+  white-space: wrap;
+  content: '\00a0';
+}
+h1 span:first-child {
+  margin-left: 0;
+}
+h1 span:last-child {
+  padding-right: 0;
+}
+h1 span:hover {
+  color: transparent;
+  -webkit-text-stroke: 0.5px var(--color-header);
+}
+h1 span:has(~ span:hover)  {
+  color: transparent;
+  -webkit-text-stroke: 0.5px var(--color-header);
 }
 .flex {
   display: flex;
@@ -62,7 +89,8 @@ h1 {
   align-items: center;
   text-align: center;
   background: var(--color-bg-box2);
-  border: 1px solid var(--color-bg-box1);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
 }
 #INPUT_BOX {
   width: 58%;
@@ -99,9 +127,12 @@ h1 {
 }
 .grid .value input {
   width: 65%;
+  box-sizing: border-box;
   color: var(--color-fg);
   background-color: var(--color-bg-box1);
-  border-color: var(--color-bg-box1);
+  border: 1px solid var(--color-fg);
+  border-radius: 4px;
+  padding-left: 5px;
 }
 .grid .key {
   font-size: 11px;
@@ -112,11 +143,23 @@ p.tip {
   font-size: 15px;
   color: var(--color-fg);
   text-align: center;
+  margin: 5px auto 10px auto;
 }
 .result {
   background: var(--color-bg-box1);
   padding: 10px;
-  margin: auto;
+  margin: auto 10px auto 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+#themeToggle {
+  position: absolute;
+  width: 110px;
+  height: 35px;
+  color: var(--color-fg);
+  background-color: var(--color-bg-box2);
+  border: 1.5px solid var(--color-fg);
+  border-radius: 30px;
 }
 @media (max-width: 720px) {
   #themeToggle {
@@ -139,13 +182,4 @@ p.tip {
     cursor: pointer;
     transform: scale(1.02);
   }
-}
-#themeToggle {
-  position: absolute;
-  width: 120px;
-  height: 35px;
-  color: var(--color-fg);
-  background-color: var(--color-bg);
-  border-color: var(--color-fg);
-  border-radius: 30px;
 }
