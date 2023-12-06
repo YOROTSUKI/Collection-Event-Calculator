@@ -1,3 +1,25 @@
+:root,
+[data-theme="dark"] {
+  --color-fg: #ffffff;
+  --color-fg-light: #949ba4;
+  --color-bg: #313338;
+  --color-bg-box1: #2b2d31;
+  --color-bg-box2: #26272b;
+}
+[data-theme="light"] {
+  --color-fg: #000000;
+  --color-fg-light: #434444;
+  --color-bg: #ffffff;
+  --color-bg-box1: #f8f9fa;
+  --color-bg-box2: #f0f1f2;
+}
+body {
+  transition: 0.2s;
+  font-family: sans-serif;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  user-select: none;
+}
 html,
 body {
   height: 100%;
@@ -8,6 +30,9 @@ html {
 }
 body {
   display: table-cell;
+}
+h1 {
+  text-align: center;
 }
 .flex {
   display: flex;
@@ -36,8 +61,8 @@ body {
   -ms-flex-align: center;
   align-items: center;
   text-align: center;
-  background: #f0f1f2;
-  border: 1px solid #f1f2f3;
+  background: var(--color-bg-box2);
+  border: 1px solid var(--color-bg-box1);
 }
 #INPUT_BOX {
   width: 58%;
@@ -51,8 +76,8 @@ body {
   -ms-flex-align: center;
   align-items: center;
   text-align: center;
-  background: #1a1b1c;
-  color: #ffffff;
+  background: var(--color-fg);
+  color: var(--color-bg);
   border-radius: 4px;
   font-size: 16px;
   height: 36px;
@@ -60,31 +85,62 @@ body {
   transition: 0.12s;
   width: 70%;
   margin: 15px auto 15px auto;
+  cursor: pointer;
 }
 #calc:active {
   transform: scale(0.98);
 }
 .grid .value {
   font-size: 20px;
-  color: #64696e;
+  color: var(--color-fg-light);
   line-height: 20px;
   margin-bottom: 5px;
+  user-select: text;
 }
 .grid .value input {
   width: 65%;
+  color: var(--color-fg);
+  background-color: var(--color-bg-box1);
+  border-color: var(--color-bg-box1);
 }
 .grid .key {
   font-size: 11px;
-  color: #3f3f3f;
+  color: var(--color-fg);
   line-height: 10px;
 }
 p.tip {
-  font-size: 14px;
-  color: #3b3b3b;
+  font-size: 15px;
+  color: var(--color-fg);
   text-align: center;
 }
 .result {
-  background: #f8f9fa;
+  background: var(--color-bg-box1);
   padding: 10px;
   margin: auto;
+}
+@media (max-width: 720px) {
+  #themeToggle {
+    margin-top: 15px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+@media (min-width: 720px) {
+  #themeToggle {
+    top: 22px;
+    right: 20px;
+  }
+}
+#themeToggle {
+  position: absolute;
+  width: 120px;
+  height: 35px;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  border-color: var(--color-fg);
+  border-radius: 30px;
+}
+#themeToggle:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
