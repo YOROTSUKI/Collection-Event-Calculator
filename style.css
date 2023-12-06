@@ -124,11 +124,20 @@ p.tip {
     left: 50%;
     transform: translate(-50%, 0);
   }
+  #themeToggle:hover {
+    cursor: pointer;
+    left: 50%;
+    transform: translate(-50%, 0) scale(1.02);
+  }
 }
 @media (min-width: 720px) {
   #themeToggle {
     top: 22px;
     right: 20px;
+  }
+  #themeToggle:hover {
+    cursor: pointer;
+    transform: scale(1.02);
   }
 }
 #themeToggle {
@@ -139,10 +148,4 @@ p.tip {
   background-color: var(--color-bg);
   border-color: var(--color-fg);
   border-radius: 30px;
-}
-#themeToggle:hover {
-  cursor: pointer;
-  transform: scale(1.02);
-  left: 50%;
-  transform: translate(-50%, 0);
 }
