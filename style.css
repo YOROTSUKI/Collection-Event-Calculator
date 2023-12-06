@@ -143,4 +143,6 @@ p.tip {
 #themeToggle:hover {
   cursor: pointer;
   transform: scale(1.02);
+  left: 50%;
+  transform: translate(-50%, 0);
 }
