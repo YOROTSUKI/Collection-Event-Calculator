@@ -23,6 +23,7 @@ body {
   color: var(--color-fg);
   background-color: var(--color-bg);
   user-select: none;
+  zoom: 1.5;
 }
 html,
 body {
@@ -45,7 +46,7 @@ h1 span {
 }
 h1 span:empty:before {
   white-space: wrap;
-  content: '\00a0';
+  content: "\00a0";
 }
 h1 span:first-child {
   margin-left: 0;
@@ -57,7 +58,7 @@ h1 span:hover {
   color: transparent;
   -webkit-text-stroke: 0.5px var(--color-header);
 }
-h1 span:has(~ span:hover)  {
+h1 span:has(~ span:hover) {
   color: transparent;
   -webkit-text-stroke: 0.5px var(--color-header);
 }
@@ -161,7 +162,7 @@ p.tip {
   border: 1.5px solid var(--color-fg);
   border-radius: 30px;
 }
-@media (max-width: 720px) {
+@media (max-width: 1035px) {
   #themeToggle {
     margin-top: 15px;
     left: 50%;
@@ -173,7 +174,7 @@ p.tip {
     transform: translate(-50%, 0) scale(1.02);
   }
 }
-@media (min-width: 720px) {
+@media (min-width: 1035px) {
   #themeToggle {
     top: 22px;
     right: 20px;
