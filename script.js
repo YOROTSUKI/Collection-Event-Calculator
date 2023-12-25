@@ -92,16 +92,15 @@ function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark })
 }
 
 // Event listener for theme toggle button
-const button = document.querySelector("[data-theme-toggle]");
+const button = document.querySelector("#themeToggle");
 
 button.addEventListener("click", () => {
   // Toggle between dark and light themes
   const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
 
-  // Update button text and aria-label
+  // Update button text
   const newCta = `Theme: ${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)}`;
   button.innerText = newCta;
-  button.setAttribute("aria-label", newCta);
 
   // Update theme attribute on HTML to switch theme in CSS
   document.querySelector("html").setAttribute("data-theme", newTheme);
@@ -110,3 +109,4 @@ button.addEventListener("click", () => {
   localStorage.setItem("theme", newTheme);
   currentThemeSetting = newTheme;
 });
+
