@@ -103,7 +103,7 @@ button.addEventListener("click", () => {
   button.innerText = newCta;
 
   // Update theme attribute on HTML to switch theme in CSS
-  document.querySelector("html").setAttribute("data-theme", newTheme);
+  document.querySelector("html").setAttribute("theme", newTheme);
 
   // Update theme setting in local storage and in memory
   localStorage.setItem("theme", newTheme);

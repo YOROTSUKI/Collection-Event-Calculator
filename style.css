@@ -1,5 +1,5 @@
 :root,
-[data-theme="dark"] {
+[theme="dark"] {
   --color-fg: #ffffff;
   --color-fg-light: #949ba4;
   --color-bg: #313338;
@@ -8,7 +8,7 @@
   --color-border: #26272b;
   --color-header: #ffffff;
 }
-[data-theme="light"] {
+[theme="light"] {
   --color-fg: #000000;
   --color-fg-light: #434444;
   --color-bg: #ffffff;
