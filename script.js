@@ -37,7 +37,7 @@ submit.addEventListener(
       needbox = leftbox;
     if (leftbox >= 12) {
       needcoin = (leftbox - 12) * 700 + 7500 - coin;
-      buykb = "10 + 5";
+      buykb = "8 + 4";
       needbox = leftbox - 12;
     } else if (leftbox <= 0) {
       needcoin = 0;
