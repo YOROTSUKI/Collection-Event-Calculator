@@ -47,11 +47,11 @@ submit.addEventListener(
       buykb = "NULL";
     } else if (leftbox < 8) {
       needcoin = (leftbox - 4) * 700 + 2500 - coin;
-      buykb = "5";
+      buykb = "4";
       needbox = leftbox - 4;
     } else if (leftbox < 12) {
       needcoin = (leftbox - 8) * 700 + 5000 - coin;
-      buykb = "10";
+      buykb = "8";
       needbox = leftbox - 8;
     }
     console.log("Need Coin：" + needcoin);
